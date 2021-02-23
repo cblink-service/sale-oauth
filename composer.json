@@ -28,7 +28,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Cblink\\Service\\OAuth\\ServiceProvider"
+                "Cblink\\Service\\Sale\\OAuth\\ServiceProvider"
             ]
         }
     }
