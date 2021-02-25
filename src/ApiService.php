@@ -28,37 +28,22 @@ class ApiService
     }
 
     /**
-     * @param $authorization
-     * @return \Psr\Http\Message\ResponseInterface
+     * @return false|mixed
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getUser($authorization)
     {
-        return $this->request([
-            'headers' => [
-                'Authorization' => $authorization
-            ]
-        ]);
-    }
-
-    /**
-     * @param array $options
-     * @param string $method
-     * @return false|mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    protected function request(array $options = [], $method = Request::METHOD_POST)
-    {
-        $options = array_merge([
-            'verify' => false,
-            'http_errors' => false,
-        ], $options);
-
         $response = $this->getClient()
             ->request(
-                $method,
+                Request::METHOD_GET,
                 $this->baseUrl,
-                $options
+                [
+                    'verify' => false,
+                    'http_errors' => false,
+                    'headers' => [
+                        'Authorization' => $authorization
+                    ]
+                ]
             );
 
         return $this->response($response);
